@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projet RP Avocat — Dossier de Présentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #0a0905; color: #f5f0e8; font-family: 'Cormorant Garant', serif; overflow-x: hidden; }
+
+/* TYPO */
+.fc { font-family: 'Cinzel Decorative', serif; }
+.fm { font-family: 'Montserrat', sans-serif; }
+.fco { font-family: 'Cormorant Garant', serif; }
+
+/* COLORS */
+.gold { color: #c9a84c; }
+.cream { color: #f5f0e8; }
+.muted { color: rgba(245,240,232,0.5); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.4s;
+}
+nav.scrolled {
+  background: rgba(10,9,5,0.96);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  backdrop-filter: blur(12px);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-text { font-family: 'Cinzel Decorative', serif; font-size: 12px; letter-spacing: 3px; color: #f5f0e8; font-weight: 700; }
+.nav-badge { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #0a0905; background: #c9a84c; padding: 3px 10px; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,240,232,0.55); text-decoration: none; transition: color 0.3s; }
+.nav-links a:hover { color: #c9a84c; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: #0a0905;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 0% 70%, rgba(201,168,76,0.04) 0%, transparent 45%),
+    radial-gradient(ellipse at 100% 70%, rgba(201,168,76,0.04) 0%, transparent 45%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 120px 40px 80px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0 L31 29 L60 30 L31 31 L30 60 L29 31 L0 30 L29 29 Z' fill='none' stroke='rgba(201,168,76,0.03)' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 60px 60px; pointer-events: none;
+}
+.hero-tag { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: #0a0905; background: #c9a84c; padding: 6px 20px; display: inline-block; margin-bottom: 32px; }
+.hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(32px, 5.5vw, 72px); font-weight: 700; color: #f5f0e8; letter-spacing: 4px; line-height: 1.1; text-align: center; margin-bottom: 16px; }
+.hero-sub { font-family: 'Cormorant Garant', serif; font-size: clamp(18px, 2.5vw, 26px); color: #c9a84c; font-style: italic; font-weight: 300; letter-spacing: 3px; text-align: center; margin-bottom: 40px; }
+.hero-desc { font-family: 'Cormorant Garant', serif; font-size: 19px; color: rgba(245,240,232,0.55); font-weight: 300; line-height: 1.9; max-width: 640px; text-align: center; margin: 0 auto 52px; font-style: italic; }
+.hero-pills { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+.pill { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: #c9a84c; padding: 7px 18px; border: 1px solid rgba(201,168,76,0.35); }
+.pill.filled { background: rgba(201,168,76,0.08); }
+
+/* DIVIDER */
+.div { display: flex; align-items: center; gap: 12px; }
+.div .dl { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35)); }
+.div .dr { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201,168,76,0.35), transparent); }
+.div .dd { width: 6px; height: 6px; background: #c9a84c; transform: rotate(45deg); flex-shrink: 0; }
+.div .ds { width: 3px; height: 3px; background: rgba(201,168,76,0.4); transform: rotate(45deg); flex-shrink: 0; }
+.div-center { justify-content: center; max-width: 440px; margin: 0 auto; }
+
+/* SECTION */
+section { padding: 110px 60px; }
+.section-label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: #c9a84c; display: block; margin-bottom: 14px; }
+.section-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(20px, 3vw, 36px); color: #f5f0e8; letter-spacing: 3px; margin-bottom: 18px; }
+
+/* FRAMED */
+.framed { position: relative; border: 1px solid rgba(201,168,76,0.2); }
+.framed .c { position: absolute; width: 20px; height: 20px; border-color: rgba(201,168,76,0.5); border-style: solid; }
+.framed .c-tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.framed .c-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+.framed .c-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+.framed .c-br { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* MARQUEE */
+.marquee-band { background: #c9a84c; padding: 16px 0; overflow: hidden; }
+.marquee-inner { display: flex; animation: marquee 40s linear infinite; white-space: nowrap; width: max-content; }
+.marquee-inner span { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase; color: #0a0905; margin-right: 72px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ===== VISION ===== */
+.vision-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.vision-text p { font-size: 19px; color: rgba(245,240,232,0.62); line-height: 1.9; font-weight: 300; margin-bottom: 22px; }
+.vision-text p strong { color: #c9a84c; font-weight: 500; }
+.impact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.impact-card { background: #111009; border: 1px solid rgba(201,168,76,0.15); padding: 22px 20px; position: relative; overflow: hidden; transition: border-color 0.3s; }
+.impact-card:hover { border-color: rgba(201,168,76,0.4); }
+.impact-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent, #c9a84c), transparent); transform: scaleX(0); transition: transform 0.4s; }
+.impact-card:hover::before { transform: scaleX(1); }
+.impact-icon { font-size: 24px; margin-bottom: 12px; }
+.impact-title { font-family: 'Cinzel Decorative', serif; font-size: 11px; color: #f5f0e8; letter-spacing: 2px; margin-bottom: 8px; }
+.impact-desc { font-size: 15px; color: rgba(245,240,232,0.5); line-height: 1.7; font-weight: 300; }
+.impact-card.police { --accent: #4a7fc1; border-color: rgba(74,127,193,0.2); }
+.impact-card.gang { --accent: #c14a4a; border-color: rgba(193,74,74,0.2); }
+.impact-card.press { --accent: #4ac18a; border-color: rgba(74,193,138,0.2); }
+.impact-card.civil { --accent: #c9a84c; }
+
+/* ===== STRUCTURE ===== */
+.ranks-wrap { max-width: 1000px; margin: 0 auto; }
+.rank-row {
+  display: grid; grid-template-columns: 180px 1fr auto;
+  gap: 0; border: 1px solid rgba(201,168,76,0.12);
+  margin-bottom: 2px; background: #111009;
+  transition: border-color 0.3s, background 0.3s;
+  align-items: stretch;
+}
+.rank-row:hover { border-color: rgba(201,168,76,0.35); background: #13120a; }
+.rank-badge-col { padding: 24px 28px; border-right: 1px solid rgba(201,168,76,0.1); display: flex; flex-direction: column; justify-content: center; }
+.rank-tier { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+.rank-title { font-family: 'Cinzel Decorative', serif; font-size: 12px; letter-spacing: 2px; color: #f5f0e8; }
+.rank-body { padding: 24px 28px; display: flex; flex-direction: column; justify-content: center; }
+.rank-desc { font-size: 17px; color: rgba(245,240,232,0.6); line-height: 1.75; font-weight: 300; margin-bottom: 10px; }
+.rank-tasks { display: flex; flex-wrap: wrap; gap: 6px; }
+.rank-tag { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border: 1px solid rgba(201,168,76,0.2); color: rgba(201,168,76,0.7); }
+.rank-num-col { padding: 24px 28px; border-left: 1px solid rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; min-width: 80px; }
+.rank-num { font-family: 'Cinzel Decorative', serif; font-size: 28px; color: rgba(201,168,76,0.15); font-weight: 700; }
+
+.rank-row.senior .rank-tier { color: #c9a84c; }
+.rank-row.senior { border-left: 3px solid #c9a84c; }
+.rank-row.intermediaire .rank-tier { color: #a0bcd4; }
+.rank-row.intermediaire { border-left: 3px solid #4a7fc1; }
+.rank-row.junior .rank-tier { color: rgba(201,168,76,0.5); }
+.rank-row.junior { border-left: 3px solid rgba(201,168,76,0.3); }
+.rank-row.commis .rank-tier { color: #4ac18a; }
+.rank-row.commis { border-left: 3px solid #4ac18a; }
+
+/* ===== REMUNERATION ===== */
+.remu-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(201,168,76,0.1); }
+.remu-card { background: #111009; padding: 44px 36px; position: relative; transition: background 0.3s; }
+.remu-card:hover { background: #13120a; }
+.remu-num { font-family: 'Cinzel Decorative', serif; font-size: 52px; color: rgba(201,168,76,0.07); position: absolute; top: 10px; right: 20px; line-height: 1; }
+.remu-icon { font-size: 28px; margin-bottom: 20px; }
+.remu-title { font-family: 'Cinzel Decorative', serif; font-size: 13px; color: #f5f0e8; letter-spacing: 2px; margin-bottom: 16px; }
+.remu-desc { font-size: 17px; color: rgba(245,240,232,0.55); line-height: 1.85; font-weight: 300; margin-bottom: 22px; }
+.remu-example { background: rgba(201,168,76,0.05); border-left: 2px solid rgba(201,168,76,0.3); padding: 14px 16px; font-size: 15px; color: rgba(245,240,232,0.45); font-style: italic; line-height: 1.6; }
+.remu-example strong { color: #c9a84c; font-style: normal; font-weight: 500; font-size: 14px; }
+
+/* ===== FILES ===== */
+.files-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.file-card { background: #111009; border: 1px solid rgba(201,168,76,0.15); padding: 36px; display: flex; gap: 24px; align-items: flex-start; transition: border-color 0.3s; }
+.file-card:hover { border-color: rgba(201,168,76,0.4); }
+.file-icon-wrap { width: 52px; height: 52px; border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; background: rgba(201,168,76,0.04); }
+.file-content { flex: 1; }
+.file-title { font-family: 'Cinzel Decorative', serif; font-size: 12px; color: #f5f0e8; letter-spacing: 2px; margin-bottom: 8px; }
+.file-desc { font-size: 16px; color: rgba(245,240,232,0.55); line-height: 1.75; font-weight: 300; margin-bottom: 12px; }
+.file-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.file-tag { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #c9a84c; padding: 3px 9px; border: 1px solid rgba(201,168,76,0.25); }
+.file-status { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #4ac18a; padding: 3px 9px; border: 1px solid rgba(74,193,138,0.3); background: rgba(74,193,138,0.06); }
+
+/* ===== PROCESS ===== */
+.process-wrap { max-width: 900px; margin: 0 auto; }
+.process-step { display: grid; grid-template-columns: 80px 1fr; gap: 0; margin-bottom: 0; position: relative; }
+.process-step:not(:last-child)::after { content: ''; position: absolute; left: 39px; top: 80px; bottom: -2px; width: 1px; background: linear-gradient(180deg, rgba(201,168,76,0.4), rgba(201,168,76,0.05)); z-index: 0; }
+.step-num-col { display: flex; flex-direction: column; align-items: center; padding-top: 28px; position: relative; z-index: 1; }
+.step-circle { width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.5); display: flex; align-items: center; justify-content: center; background: #0a0905; font-family: 'Cinzel Decorative', serif; font-size: 14px; color: #c9a84c; }
+.step-body { padding: 20px 0 40px 32px; border-bottom: 1px solid rgba(201,168,76,0.08); margin-bottom: 2px; }
+.process-step:last-child .step-body { border-bottom: none; }
+.step-label { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,168,76,0.6); margin-bottom: 6px; }
+.step-title { font-family: 'Cinzel Decorative', serif; font-size: 15px; color: #f5f0e8; letter-spacing: 2px; margin-bottom: 12px; }
+.step-desc { font-size: 18px; color: rgba(245,240,232,0.58); line-height: 1.85; font-weight: 300; }
+.step-roles { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.step-role { font-family: 'Montserrat', sans-serif; font-size: 8px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; }
+.step-role.police { color: #4a7fc1; border: 1px solid rgba(74,127,193,0.35); background: rgba(74,127,193,0.06); }
+.step-role.gang { color: #c14a4a; border: 1px solid rgba(193,74,74,0.35); background: rgba(193,74,74,0.06); }
+.step-role.avocat { color: #c9a84c; border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.06); }
+.step-role.presse { color: #4ac18a; border: 1px solid rgba(74,193,138,0.35); background: rgba(74,193,138,0.06); }
+.step-role.civil { color: rgba(245,240,232,0.5); border: 1px solid rgba(245,240,232,0.15); }
+
+/* ===== STATS BAND ===== */
+.stats-band { background: #111009; border-top: 1px solid rgba(201,168,76,0.12); border-bottom: 1px solid rgba(201,168,76,0.12); padding: 60px; }
+.stats-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(201,168,76,0.1); }
+.stat-item { background: #111009; padding: 40px 28px; text-align: center; }
+.stat-num { font-family: 'Cinzel Decorative', serif; font-size: 36px; color: #c9a84c; font-weight: 700; margin-bottom: 8px; }
+.stat-label { font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,240,232,0.35); }
+
+/* ===== CTA ===== */
+.cta-section { background: linear-gradient(180deg, #0a0905, #0d0c08); padding: 110px 60px; text-align: center; }
+.cta-inner { max-width: 700px; margin: 0 auto; }
+.cta-section .section-title { font-size: clamp(22px, 3vw, 40px); margin-bottom: 24px; }
+.cta-section p { font-size: 19px; color: rgba(245,240,232,0.55); font-style: italic; line-height: 1.85; margin-bottom: 48px; }
+.btn-gold { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: #0a0905; background: #c9a84c; padding: 16px 44px; border: none; cursor: pointer; transition: background 0.3s; display: inline-block; text-decoration: none; }
+.btn-gold:hover { background: #e8c97a; }
+.btn-outline { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: #c9a84c; background: transparent; padding: 15px 44px; border: 1px solid #c9a84c; cursor: pointer; transition: all 0.3s; display: inline-block; text-decoration: none; }
+.btn-outline:hover { background: rgba(201,168,76,0.08); }
+.cta-btns { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer { background: #060504; border-top: 1px solid rgba(201,168,76,0.1); padding: 44px 60px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.footer-left span { font-family: 'Cinzel Decorative', serif; font-size: 13px; letter-spacing: 3px; color: #f5f0e8; }
+.footer-left p { font-family: 'Cormorant Garant', serif; font-size: 14px; color: rgba(245,240,232,0.25); font-style: italic; margin-top: 4px; }
+.footer-right { font-family: 'Montserrat', sans-serif; font-size: 9px; color: rgba(245,240,232,0.18); letter-spacing: 2px; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  section { padding: 72px 20px; }
+  .vision-grid { grid-template-columns: 1fr; gap: 40px; }
+  .remu-grid { grid-template-columns: 1fr; }
+  .files-grid { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .rank-row { grid-template-columns: 1fr; }
+  .rank-num-col { display: none; }
+  .rank-badge-col { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.1); }
+  .impact-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <span style="color:#c9a84c;font-size:16px">⚖</span>
+    <span class="nav-logo-text">HAMPTON <span style="color:#c9a84c">&</span> CO.</span>
+    <span class="nav-badge">Dossier Admin</span>
+  </div>
+  <div class="nav-links">
+    <a href="#vision">Vision</a>
+    <a href="#structure">Structure</a>
+    <a href="#remuneration">Rémunération</a>
+    <a href="#fichiers">Fichiers RP</a>
+    <a href="#processus">Processus</a>
+    <a href="#localisation">Localisation</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="text-align:center;max-width:900px;position:relative;z-index:2;">
+    <span class="hero-tag">Dossier de Présentation · Administration Serveur</span>
+    <h1 class="hero-title">PROJET RP AVOCAT</h1>
+    <p class="hero-sub">Hampton & Co. — Cabinet Juridique</p>
+    <div class="div div-center" style="margin-bottom:36px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+    <p class="hero-desc">Une proposition sérieuse pour enrichir l'écosystème juridique du serveur avec un RP avocat structuré, documenté et interconnecté avec la police, les gangs et la presse.</p>
+    <div class="hero-pills">
+      <span class="pill filled">RP Sérieux</span>
+      <span class="pill">Hiérarchie structurée</span>
+      <span class="pill">Documents prêts</span>
+      <span class="pill filled">Commis d'office</span>
+      <span class="pill">Multi-factions</span>
+    </div>
+    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+      <a href="#vision" class="btn-gold">Découvrir le projet</a>
+      <a href="#fichiers" class="btn-outline">Voir les fichiers</a>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);opacity:0.3;text-align:center;">
+    <div style="width:1px;height:40px;background:linear-gradient(180deg,transparent,#c9a84c);margin:0 auto"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-band">
+  <div class="marquee-inner" id="marquee"></div>
+</div>
+
+<!-- VISION -->
+<section id="vision" style="background:#0d0c08;">
+  <div class="vision-grid">
+    <div class="reveal">
+      <span class="section-label">Vision du Projet</span>
+      <h2 class="section-title">Un RP Juridique Complet & Sérieux</h2>
+      <div class="div" style="margin-bottom:28px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+      <div class="vision-text">
+        <p>Le RP avocat est l'un des <strong>maillons manquants</strong> de nombreux serveurs. Sans défense juridique crédible, les arrestations et procès restent superficiels, privant policiers, criminels et civils d'une dimension narrative puissante.</p>
+        <p>Hampton & Co. propose un cadre <strong>rigoureux et documenté</strong> pour installer un véritable système judiciaire en jeu : des avocats hiérarchisés, des procédures établies, des documents modèles prêts à l'emploi pour les nouveaux joueurs.</p>
+        <p>Ce n'est pas un simple rôle de figurant. C'est un <strong>pilier de l'écosystème RP</strong> qui génère de l'interaction pour toutes les factions du serveur.</p>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.2s">
+      <span class="section-label" style="margin-bottom:20px;display:block">Impact sur les Factions</span>
+      <div class="impact-grid">
+        <div class="impact-card police">
+          <div class="impact-icon">🚔</div>
+          <div class="impact-title">Police / LSPD</div>
+          <div class="impact-desc">Procédures d'arrestation valorisées. Garde à vue, mise en examen, procès : chaque intervention prend du sens face à une défense active.</div>
+        </div>
+        <div class="impact-card gang">
+          <div class="impact-icon">🔫</div>
+          <div class="impact-title">Gangs & Criminels</div>
+          <div class="impact-desc">Une issue autre que la prison systématique. Plaider coupable, négocier une peine, bénéficier d'un non-lieu — un nouveau souffle narratif.</div>
+        </div>
+        <div class="impact-card press">
+          <div class="impact-icon">📰</div>
+          <div class="impact-title">Presse & Médias</div>
+          <div class="impact-desc">Procès publics, scandales judiciaires, couvertures d'affaires sensibles. Le RP avocat alimente directement le RP journalistique.</div>
+        </div>
+        <div class="impact-card civil">
+          <div class="impact-icon">🏛</div>
+          <div class="impact-title">Civils & Entreprises</div>
+          <div class="impact-desc">Litiges commerciaux, contrats, divorces, licenciements. Un cabinet ouvert à toutes les problématiques civiles de la ville.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><div class="stat-num">4</div><div class="stat-label">Niveaux de rang</div></div>
+    <div class="stat-item reveal" style="transition-delay:0.1s"><div class="stat-num">3</div><div class="stat-label">Types de rémunération</div></div>
+    <div class="stat-item reveal" style="transition-delay:0.2s"><div class="stat-num">8+</div><div class="stat-label">Fichiers RP fournis</div></div>
+    <div class="stat-item reveal" style="transition-delay:0.3s"><div class="stat-num">4</div><div class="stat-label">Factions impliquées</div></div>
+  </div>
+</div>
+
+<!-- STRUCTURE -->
+<section id="structure" style="background:#0a0905;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal section-center" style="text-align:center;margin-bottom:56px;">
+      <span class="section-label">Organisation Interne</span>
+      <h2 class="section-title">Hiérarchie du Cabinet</h2>
+      <div class="div div-center"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+    </div>
+    <div class="ranks-wrap">
+
+      <!-- ASSOCIÉ PRINCIPAL -->
+      <div class="rank-row senior reveal">
+        <div class="rank-badge-col">
+          <div class="rank-tier">Tier I — Senior</div>
+          <div class="rank-title">Associé Principal</div>
+        </div>
+        <div class="rank-body">
+          <p class="rank-desc">Fondateur ou associé de haut rang. Pilote la stratégie du cabinet, valide les dossiers sensibles, représente Hampton & Co. lors des grandes audiences. Interlocuteur privilégié des institutions.</p>
+          <div class="rank-tasks">
+            <span class="rank-tag">Plaidoiries majeures</span>
+            <span class="rank-tag">Direction stratégique</span>
+            <span class="rank-tag">Signature des actes</span>
+            <span class="rank-tag">Négociation peine</span>
+          </div>
+        </div>
+        <div class="rank-num-col"><div class="rank-num">I</div></div>
+      </div>
+
+      <!-- ASSOCIÉ SENIOR -->
+      <div class="rank-row senior reveal" style="transition-delay:0.1s">
+        <div class="rank-badge-col">
+          <div class="rank-tier">Tier II — Senior</div>
+          <div class="rank-title">Associé Senior</div>
+        </div>
+        <div class="rank-body">
+          <p class="rank-desc">Avocat expérimenté, capable de gérer des affaires complexes en autonomie totale. Encadre les niveaux inférieurs et peut représenter le cabinet en l'absence du Principal.</p>
+          <div class="rank-tasks">
+            <span class="rank-tag">Affaires complexes</span>
+            <span class="rank-tag">Mentoring</span>
+            <span class="rank-tag">Audiences solo</span>
+          </div>
+        </div>
+        <div class="rank-num-col"><div class="rank-num">II</div></div>
+      </div>
+
+      <!-- ASSOCIÉ INTERMÉDIAIRE -->
+      <div class="rank-row intermediaire reveal" style="transition-delay:0.15s">
+        <div class="rank-badge-col">
+          <div class="rank-tier">Tier III — Intermédiaire</div>
+          <div class="rank-title">Associé</div>
+        </div>
+        <div class="rank-body">
+          <p class="rank-desc">Avocat confirmé gérant son portefeuille client sous supervision partielle. Participe activement aux procès et rédige les actes courants du cabinet.</p>
+          <div class="rank-tasks">
+            <span class="rank-tag">Dossiers courants</span>
+            <span class="rank-tag">Rédaction d'actes</span>
+            <span class="rank-tag">Représentation client</span>
+          </div>
+        </div>
+        <div class="rank-num-col"><div class="rank-num">III</div></div>
+      </div>
+
+      <!-- COLLABORATEUR -->
+      <div class="rank-row junior reveal" style="transition-delay:0.2s">
+        <div class="rank-badge-col">
+          <div class="rank-tier">Tier IV — Junior</div>
+          <div class="rank-title">Collaborateur</div>
+        </div>
+        <div class="rank-body">
+          <p class="rank-desc">Avocat en début de carrière, encadré par un senior. Assiste aux audiences, prépare les dossiers, effectue les recherches juridiques. Progression rapide selon implication RP.</p>
+          <div class="rank-tasks">
+            <span class="rank-tag">Assistance dossiers</span>
+            <span class="rank-tag">Recherches</span>
+            <span class="rank-tag">Observation audiences</span>
+          </div>
+        </div>
+        <div class="rank-num-col"><div class="rank-num">IV</div></div>
+      </div>
+
+      <!-- STAGIAIRE -->
+      <div class="rank-row junior reveal" style="transition-delay:0.25s">
+        <div class="rank-badge-col">
+          <div class="rank-tier">Tier V — Junior</div>
+          <div class="rank-title">Stagiaire</div>
+        </div>
+        <div class="rank-body">
+          <p class="rank-desc">Point d'entrée dans le cabinet. Découverte des procédures, prise en main des fichiers modèles, shadowing d'un collaborateur. Idéal pour les nouveaux joueurs souhaitant débuter le RP avocat.</p>
+          <div class="rank-tasks">
+            <span class="rank-tag">Onboarding RP</span>
+            <span class="rank-tag">Fichiers modèles</span>
+            <span class="rank-tag">Shadow</span>
+          </div>
+        </div>
+        <div class="rank-num-col"><div class="rank-num">V</div></div>
+      </div>
+
+      <!-- COMMIS D'OFFICE -->
+      <div class="rank-row commis reveal" style="transition-delay:0.3s;margin-top:20px;border-top:1px solid rgba(74,193,138,0.2)">
+        <div class="rank-badge-col" style="border-right-color:rgba(74,193,138,0.2)">
+          <div class="rank-tier" style="color:#4ac18a">Statut Spécial</div>
+          <div class="rank-title">Commis d'Office</div>
+        </div>
+        <div class="rank-body">
+          <p class="rank-desc">Désigné par la juridiction pour défendre un client sans ressources ou qui n'a pas mandaté d'avocat. Le commis d'office garantit le droit à la défense pour tous. Rémunéré par l'État, il joue un rôle essentiel dans l'équilibre judiciaire du serveur.</p>
+          <div class="rank-tasks">
+            <span class="rank-tag" style="color:#4ac18a;border-color:rgba(74,193,138,0.3)">Défense garantie</span>
+            <span class="rank-tag" style="color:#4ac18a;border-color:rgba(74,193,138,0.3)">Rémunération État</span>
+            <span class="rank-tag" style="color:#4ac18a;border-color:rgba(74,193,138,0.3)">Tous profils</span>
+            <span class="rank-tag" style="color:#4ac18a;border-color:rgba(74,193,138,0.3)">Rotation possible</span>
+          </div>
+        </div>
+        <div class="rank-num-col" style="border-left-color:rgba(74,193,138,0.15)"><div class="rank-num" style="color:rgba(74,193,138,0.15)">✦</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RÉMUNÉRATION -->
+<section id="remuneration" style="background:#0d0c08;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="section-label">Modèles Économiques</span>
+      <h2 class="section-title">Types de Rémunération</h2>
+      <div class="div div-center" style="margin-bottom:18px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+      <p style="font-size:19px;color:rgba(245,240,232,0.45);font-style:italic;max-width:520px;margin:0 auto;">Trois modèles complémentaires pour assurer la viabilité économique du cabinet tout en restant accessible à tous.</p>
+    </div>
+    <div class="remu-grid">
+
+      <div class="remu-card reveal">
+        <span class="remu-num">01</span>
+        <div class="remu-icon">💼</div>
+        <h3 class="remu-title">Honoraires Directs</h3>
+        <p class="remu-desc">Le client mandate et rémunère directement l'avocat selon un tarif convenu. Retainer fixe, honoraire à l'acte ou forfait procès. La relation est privée et contractuelle.</p>
+        <div class="remu-example">
+          <strong>Exemple RP :</strong> Un chef de gang arrêté paie $5 000 en retainer à Icaro Hampton pour assurer sa défense sur une affaire de meurtre au premier degré.
+        </div>
+      </div>
+
+      <div class="remu-card reveal" style="transition-delay:0.15s">
+        <span class="remu-num">02</span>
+        <div class="remu-icon">⚖</div>
+        <h3 class="remu-title">Commission sur Résultat</h3>
+        <p class="remu-desc">L'avocat perçoit un pourcentage du résultat obtenu : réduction de peine, amende évitée, dommages et intérêts. Motive à obtenir les meilleurs résultats pour le client.</p>
+        <div class="remu-example">
+          <strong>Exemple RP :</strong> Acquittement obtenu → l'avocat touche 15% de la caution remboursée et une prime de résultat négociée en amont avec le client.
+        </div>
+      </div>
+
+      <div class="remu-card reveal" style="transition-delay:0.3s">
+        <span class="remu-num">03</span>
+        <div class="remu-icon">🏛</div>
+        <h3 class="remu-title">Commis d'Office — État</h3>
+        <p class="remu-desc">Pour les clients sans ressources ou sans avocat désigné, l'État (server fund / trésor) rémunère le cabinet selon un barème fixe. Garantit l'accès à la justice pour tous.</p>
+        <div class="remu-example">
+          <strong>Exemple RP :</strong> SDF arrêté pour vol → commis d'office désigné par le juge, rémunéré $1 500 par l'État indépendamment de l'issue du procès.
+        </div>
+      </div>
+
+    </div>
+    <!-- NOTE -->
+    <div class="reveal framed" style="max-width:800px;margin:40px auto 0;padding:32px 36px;">
+      <div class="c c-tl"></div><div class="c c-tr"></div><div class="c c-bl"></div><div class="c c-br"></div>
+      <p style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px">Note pour l'administration</p>
+      <p style="font-size:18px;color:rgba(245,240,232,0.6);line-height:1.85;font-weight:300;">Le modèle de rémunération est <span style="color:#c9a84c">entièrement flexible</span> et s'adapte aux règles économiques du serveur. Si le serveur possède un système monétaire intégré, les honoraires sont en in-game currency. Sans système économique, la rémunération peut être symbolique (réputation, points RP, avantages narratifs). Le commis d'office peut être optionnel selon la politique judiciaire choisie par les admins.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FICHIERS RP -->
+<section id="fichiers" style="background:#0a0905;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="section-label">Documentation Prête à l'Emploi</span>
+      <h2 class="section-title">Fichiers RP Fournis</h2>
+      <div class="div div-center" style="margin-bottom:18px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+      <p style="font-size:19px;color:rgba(245,240,232,0.45);font-style:italic;max-width:560px;margin:0 auto;">Tous les documents sont préparés pour permettre aux nouveaux joueurs de démarrer immédiatement sans avoir à créer leurs outils RP from scratch.</p>
+    </div>
+    <div class="files-grid">
+
+      <div class="file-card reveal">
+        <div class="file-icon-wrap">📋</div>
+        <div class="file-content">
+          <h3 class="file-title">Fiche de Prise en Charge Client</h3>
+          <p class="file-desc">Formulaire à remplir lors du premier contact. Identité, nature de l'affaire, moyens financiers, antécédents. Détermine le type de défense et la rémunération applicable.</p>
+          <div class="file-tags"><span class="file-tag">Tous rangs</span><span class="file-tag">Premier contact</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+      <div class="file-card reveal" style="transition-delay:0.1s">
+        <div class="file-icon-wrap">⚖</div>
+        <div class="file-content">
+          <h3 class="file-title">Modèle de Plaidoirie</h3>
+          <p class="file-desc">Structure type d'une plaidoirie en défense : rappel des faits, contestation des preuves, plaidoyer de culpabilité ou d'innocence, demande de clémence. Adaptable à toute affaire.</p>
+          <div class="file-tags"><span class="file-tag">Audiences</span><span class="file-tag">Junior+</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+      <div class="file-card reveal" style="transition-delay:0.15s">
+        <div class="file-icon-wrap">📜</div>
+        <div class="file-content">
+          <h3 class="file-title">Contrat d'Honoraires</h3>
+          <p class="file-desc">Document officiel liant l'avocat et son client. Précise les honoraires, le périmètre de la mission, les obligations de chaque partie. Renforce l'authenticité du RP contractuel.</p>
+          <div class="file-tags"><span class="file-tag">Honoraires directs</span><span class="file-tag">Associé+</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+      <div class="file-card reveal" style="transition-delay:0.2s">
+        <div class="file-icon-wrap">🏛</div>
+        <div class="file-content">
+          <h3 class="file-title">Désignation Commis d'Office</h3>
+          <p class="file-desc">Formulaire officiel émis par la juridiction désignant un avocat commis d'office. Inclut l'affaire, le client, la juridiction et les conditions de rémunération par l'État.</p>
+          <div class="file-tags"><span class="file-tag">Commis d'office</span><span class="file-tag">Justice</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+      <div class="file-card reveal" style="transition-delay:0.25s">
+        <div class="file-icon-wrap">🔍</div>
+        <div class="file-content">
+          <h3 class="file-title">Rapport d'Enquête Défense</h3>
+          <p class="file-desc">Fiche de collecte de preuves et témoignages en faveur du client. Permet à l'avocat de mener sa propre investigation et de construire un contre-récit face à l'accusation.</p>
+          <div class="file-tags"><span class="file-tag">Investigation</span><span class="file-tag">Collaborateur+</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+      <div class="file-card reveal" style="transition-delay:0.3s">
+        <div class="file-icon-wrap">📖</div>
+        <div class="file-content">
+          <h3 class="file-title">Guide d'Onboarding Avocat</h3>
+          <p class="file-desc">Manuel complet pour les nouveaux joueurs voulant faire du RP avocat : fonctionnement du cabinet, codes de conduite, procédures type, lexique juridique RP, conseils de jeu.</p>
+          <div class="file-tags"><span class="file-tag">Stagiaire</span><span class="file-tag">Débutants</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+      <div class="file-card reveal" style="transition-delay:0.35s">
+        <div class="file-icon-wrap">💰</div>
+        <div class="file-content">
+          <h3 class="file-title">Grille Tarifaire Officielle</h3>
+          <p class="file-desc">Barème des honoraires par type d'affaire, niveau d'avocat et complexité du dossier. Transparence totale pour les clients et cohérence économique au sein du cabinet.</p>
+          <div class="file-tags"><span class="file-tag">Rémunération</span><span class="file-tag">Tous</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+      <div class="file-card reveal" style="transition-delay:0.4s">
+        <div class="file-icon-wrap">📰</div>
+        <div class="file-content">
+          <h3 class="file-title">Communiqué Presse Post-Procès</h3>
+          <p class="file-desc">Modèle de communiqué de presse à destination des médias du serveur. Alimente le RP journalistique avec les résultats d'audience, les positions du cabinet et les déclarations officielles.</p>
+          <div class="file-tags"><span class="file-tag">Presse</span><span class="file-tag">Senior</span><span class="file-status">✓ Prêt</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section id="processus" style="background:#0d0c08;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:64px;">
+      <span class="section-label">Exemple de Scénario</span>
+      <h2 class="section-title">Le Processus Judiciaire RP</h2>
+      <div class="div div-center" style="margin-bottom:18px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+      <p style="font-size:19px;color:rgba(245,240,232,0.45);font-style:italic;max-width:540px;margin:0 auto;">De l'arrestation au verdict — comment le RP avocat s'intègre à chaque étape.</p>
+    </div>
+    <div class="process-wrap">
+
+      <div class="process-step reveal">
+        <div class="step-num-col"><div class="step-circle">I</div></div>
+        <div class="step-body">
+          <div class="step-label">Étape 1</div>
+          <div class="step-title">Arrestation & Garde à Vue</div>
+          <p class="step-desc">La police interpelle un suspect. La garde à vue démarre. L'avocat est contacté — soit mandaté par le client, soit désigné commis d'office si le suspect ne peut pas en payer un. Premier contact, recueil des faits.</p>
+          <div class="step-roles">
+            <span class="step-role police">🚔 Police / LSPD</span>
+            <span class="step-role avocat">⚖ Avocat</span>
+            <span class="step-role gang">🔫 Suspect</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal" style="transition-delay:0.1s">
+        <div class="step-num-col"><div class="step-circle">II</div></div>
+        <div class="step-body">
+          <div class="step-label">Étape 2</div>
+          <div class="step-title">Constitution du Dossier</div>
+          <p class="step-desc">L'avocat remplit la fiche de prise en charge, collecte les preuves, interroge les témoins. Le rapport d'enquête défense est rédigé. Une stratégie judiciaire est construite face au dossier d'accusation.</p>
+          <div class="step-roles">
+            <span class="step-role avocat">⚖ Avocat</span>
+            <span class="step-role civil">👥 Témoins</span>
+            <span class="step-role police">🚔 Pièces à conviction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal" style="transition-delay:0.15s">
+        <div class="step-num-col"><div class="step-circle">III</div></div>
+        <div class="step-body">
+          <div class="step-label">Étape 3</div>
+          <div class="step-title">Audience & Procès</div>
+          <p class="step-desc">Comparution devant le juge. L'avocat plaide selon le modèle fourni, adapté à l'affaire. L'accusation présente ses charges. Le juge délibère. Le procès peut être couvert par la presse RP pour un impact maximal.</p>
+          <div class="step-roles">
+            <span class="step-role avocat">⚖ Avocat défense</span>
+            <span class="step-role police">🚔 Procureur / Police</span>
+            <span class="step-role presse">📰 Presse</span>
+            <span class="step-role civil">🏛 Juge</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal" style="transition-delay:0.2s">
+        <div class="step-num-col"><div class="step-circle">IV</div></div>
+        <div class="step-body">
+          <div class="step-label">Étape 4</div>
+          <div class="step-title">Verdict & Exécution</div>
+          <p class="step-desc">Acquittement, réduction de peine, condamnation. Les honoraires sont réglés selon le modèle choisi. En cas de commis d'office, la rémunération État est traitée administrativement. Un communiqué presse peut être émis.</p>
+          <div class="step-roles">
+            <span class="step-role avocat">⚖ Avocat</span>
+            <span class="step-role gang">🔫 Client</span>
+            <span class="step-role presse">📰 Presse</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal" style="transition-delay:0.25s">
+        <div class="step-num-col"><div class="step-circle">V</div></div>
+        <div class="step-body">
+          <div class="step-label">Étape 5</div>
+          <div class="step-title">Archivage & Précédent</div>
+          <p class="step-desc">Le dossier est archivé dans les fichiers du cabinet. Les affaires passées créent des précédents RP, enrichissent la lore du serveur et permettent aux avocats de citer leurs victoires dans de futures plaidoiries.</p>
+          <div class="step-roles">
+            <span class="step-role avocat">⚖ Cabinet</span>
+            <span class="step-role civil">🏛 Lore serveur</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- LOCALISATION -->
+<section id="localisation" style="background:#0a0905;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:56px;">
+      <span class="section-label">Implantation dans la Ville</span>
+      <h2 class="section-title">Localisation du Cabinet</h2>
+      <div class="div div-center" style="margin-bottom:18px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+      <p style="font-size:19px;color:rgba(245,240,232,0.45);font-style:italic;max-width:580px;margin:0 auto;">Un emplacement de prestige à Vinewood West — l'adresse qui impose le respect dès la première impression.</p>
+    </div>
+
+    <!-- MAP + DESC -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px;align-items:stretch;" class="reveal">
+      <div style="position:relative;overflow:hidden;border:1px solid rgba(201,168,76,0.25);">
+        <img src="images/map-location.png" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(0.9)contrast(1.05);">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(transparent,rgba(10,9,5,0.92));">
+          <span style="font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;display:block;margin-bottom:4px">Carte du Serveur</span>
+          <span style="font-family:'Cinzel Decorative',serif;font-size:13px;color:#f5f0e8;letter-spacing:2px;">Vinewood West</span>
+        </div>
+        <div style="position:absolute;top:14px;left:14px;background:rgba(201,168,76,0.9);font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#0a0905;padding:5px 12px;">
+          📍 Emplacement cible
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;padding:8px 0;">
+        <span class="section-label">Pourquoi cet emplacement ?</span>
+        <h3 style="font-family:'Cinzel Decorative',serif;font-size:18px;color:#f5f0e8;letter-spacing:2px;margin-bottom:20px;line-height:1.4;">Un Manoir Haussmannien au Cœur de Vinewood</h3>
+        <div class="div" style="margin-bottom:22px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+        <p style="font-size:18px;color:rgba(245,240,232,0.62);line-height:1.9;font-weight:300;margin-bottom:18px;">L'édifice identifié à <strong style="color:#c9a84c">Vinewood West</strong> présente toutes les qualités requises pour accueillir un cabinet d'avocats de prestige : architecture baroque européenne, tourelles en pierre, grilles d'entrée ornementées et position stratégique au cœur du quartier huppé de Los Santos.</p>
+        <p style="font-size:18px;color:rgba(245,240,232,0.62);line-height:1.9;font-weight:300;margin-bottom:26px;">Sa proximité avec les institutions judiciaires, les zones résidentielles haut de gamme et les axes principaux de la ville en fait l'adresse idéale pour recevoir une clientèle aussi bien <strong style="color:#c9a84c">civile que criminelle</strong>.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;padding:6px 14px;border:1px solid rgba(201,168,76,0.3);">Vinewood West</span>
+          <span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;padding:6px 14px;border:1px solid rgba(201,168,76,0.3);">Architecture baroque</span>
+          <span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#c9a84c;padding:6px 14px;border:1px solid rgba(201,168,76,0.3);">Zone premium</span>
+          <span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4ac18a;padding:6px 14px;border:1px solid rgba(74,193,138,0.3);">✓ Disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 BUILDING SHOTS -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;" class="reveal" style="transition-delay:0.2s">
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/10;">
+        <img src="images/building-1.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s;filter:brightness(0.85);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(10,9,5,0.88));">
+          <span style="font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.8)">Façade — Vue proche</span>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/10;">
+        <img src="images/building-2.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s;filter:brightness(0.85);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(10,9,5,0.88));">
+          <span style="font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.8)">Façade — Vue d'ensemble</span>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/10;">
+        <img src="images/building-3.png" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s;filter:brightness(0.85);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(transparent,rgba(10,9,5,0.88));">
+          <span style="font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.8)">Entrée — Portail principal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUOTE -->
+    <div class="reveal framed" style="max-width:700px;margin:36px auto 0;padding:28px 36px;text-align:center;transition-delay:0.3s">
+      <div class="c c-tl"></div><div class="c c-tr"></div><div class="c c-bl"></div><div class="c c-br"></div>
+      <p style="font-family:'Cormorant Garant',serif;font-size:21px;color:#c9a84c;font-style:italic;line-height:1.7;">"L'architecture parle avant même que l'avocat n'ouvre la bouche."</p>
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(245,240,232,0.3);letter-spacing:3px;text-transform:uppercase;margin-top:14px">— Icaro Hampton</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="cta-section">
+  <div class="cta-inner reveal">
+    <span class="section-label" style="display:block;text-align:center">À l'Attention des Administrateurs</span>
+    <h2 class="section-title">Prêt à Enrichir le Serveur</h2>
+    <div class="div div-center" style="margin-bottom:28px"><div class="dl"></div><div class="ds"></div><div class="dd"></div><div class="ds"></div><div class="dr"></div></div>
+    <p>Ce projet est clé en main. Les fichiers RP sont préparés, la structure est définie, les modèles économiques sont flexibles. Il ne manque que votre validation pour lancer un RP juridique qui rehaussera la qualité narrative de tout le serveur.</p>
+    <div class="framed" style="padding:32px 36px;margin-bottom:48px;text-align:left;">
+      <div class="c c-tl"></div><div class="c c-tr"></div><div class="c c-bl"></div><div class="c c-br"></div>
+      <p style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c9a84c;margin-bottom:16px">Icaro Hampton — Fondateur</p>
+      <p style="font-size:20px;color:rgba(245,240,232,0.65);font-style:italic;line-height:1.85;font-weight:300;">Hampton & Co. est prêt à prendre en charge tout le RP judiciaire du serveur. Nous nous engageons à maintenir un niveau de jeu sérieux, à former les nouveaux membres et à travailler main dans la main avec les forces de l'ordre, les institutions et toutes les factions du serveur pour construire quelque chose d'unique.</p>
+      <p style="font-family:'Montserrat',sans-serif;font-size:10px;color:rgba(201,168,76,0.5);letter-spacing:2px;text-transform:uppercase;margin-top:16px">— Icaro Hampton, Associé Fondateur</p>
+    </div>
+    <div class="cta-btns">
+      <a href="#" class="btn-gold">Approuver le projet</a>
+      <a href="#vision" class="btn-outline">Revoir le dossier</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>⚖ &nbsp;HAMPTON <span style="color:#c9a84c">&</span> CO. &nbsp;<span style="font-size:10px;letter-spacing:2px;font-family:'Montserrat',sans-serif;color:rgba(245,240,232,0.3);font-weight:400">— DOSSIER ADMIN</span></span>
+      <p>Cabinet d'Avocats · Los Santos · San Andreas RP</p>
+    </div>
+    <div style="font-family:'Montserrat',sans-serif;font-size:9px;color:rgba(245,240,232,0.18);letter-spacing:3px;text-align:center">
+      <span style="color:rgba(201,168,76,0.35)">✦</span> &nbsp; JUSTICE · INTÉGRITÉ · EXCELLENCE &nbsp; <span style="color:rgba(201,168,76,0.35)">✦</span>
+    </div>
+    <p class="footer-right">© MMXXIV Hampton & Co. · Présentation confidentielle</p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  const items = [
+    'RP Avocat Sérieux', 'Hampton & Co. — Los Santos',
+    'Justice pour Tous', 'Commis d\'Office Disponible',
+    'Cabinet Structuré', 'Documents RP Fournis',
+    'Procès & Audiences', 'Défense Sans Compromis'
+  ];
+  const all = [...items,...items,...items,...items];
+  document.getElementById('marquee').innerHTML = all.map(t => `<span>${t} &nbsp;·&nbsp;</span>`).join('');
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
